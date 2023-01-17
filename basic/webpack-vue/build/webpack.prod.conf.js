@@ -4,6 +4,7 @@ const baseConfig = require('./webpack.base.conf')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(baseConfig, {
   output: {
@@ -40,7 +41,9 @@ module.exports = merge(baseConfig, {
     })
   ],
   optimization: {
+    minimize: true,
     minimizer: [
+      new TerserPlugin(),
       new CssMinimizerPlugin()
     ]
   }
